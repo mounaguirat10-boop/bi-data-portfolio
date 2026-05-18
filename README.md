@@ -1,4 +1,8 @@
 # 📊 Business Intelligence Data Portfolio
+## 🌍 Live Demo
+
+🚀 Explore my interactive portfolio here:  
+👉 [View Portfolio](https://mounaguirat10-boop.github.io/bi-data-portfolio/)
 
 Welcome to my Business Intelligence & Data Analytics portfolio.
 
