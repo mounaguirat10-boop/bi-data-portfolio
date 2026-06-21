@@ -20,270 +20,8 @@ html { scroll-behavior: smooth; }
 body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
 a { color: var(--purple-light); text-decoration: none; }
 
-/* ═══════════════════════════════════════
-   VIDEO HERO SECTION — TOP OF PAGE
-═══════════════════════════════════════ */
-#video-hero {
-  position: relative;
-  width: 100%;
-  background: #000;
-  overflow: hidden;
-}
-
-.video-wrapper {
-  position: relative;
-  max-width: 480px;
-  margin: 0 auto;
-  background: #000;
-}
-
-.video-wrapper video {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 85vh;
-  object-fit: cover;
-}
-
-/* Overlay gradient bottom */
-.video-wrapper::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 120px;
-  background: linear-gradient(to bottom, transparent, #08080f);
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Badge top-left */
-.video-badge {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 10;
-  background: rgba(8,8,15,0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(124,92,252,0.3);
-  border-radius: 50px;
-  padding: 6px 14px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--purple-light);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  letter-spacing: 0.5px;
-}
-
-.video-badge::before {
-  content: '';
-  width: 6px; height: 6px;
-  background: var(--green);
-  border-radius: 50%;
-  animation: pulse-dot 2s infinite;
-}
-
-/* Mute / play controls */
-.video-controls {
-  position: absolute;
-  bottom: 20px;
-  right: 16px;
-  z-index: 10;
-  display: flex;
-  gap: 8px;
-}
-
-.vc-btn {
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  background: rgba(8,8,15,0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.15);
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s;
-}
-.vc-btn:hover { background: rgba(124,92,252,0.4); border-color: var(--purple); }
-
-/* Name overlay at bottom of video */
-.video-name-overlay {
-  position: absolute;
-  bottom: 30px;
-  left: 20px;
-  z-index: 10;
-}
-
-.video-name-overlay h2 {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #fff, var(--gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1.1;
-}
-
-.video-name-overlay p {
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.6);
-  font-family: var(--font-mono);
-  margin-top: 2px;
-}
-
-/* Wide screen: show video beside content */
-@media (min-width: 900px) {
-  #video-hero {
-    display: flex;
-    align-items: stretch;
-    min-height: 520px;
-  }
-  .video-wrapper {
-    width: 380px;
-    flex-shrink: 0;
-    max-width: none;
-    margin: 0;
-  }
-  .video-wrapper video {
-    height: 100%;
-    max-height: none;
-    object-fit: cover;
-  }
-  .video-side-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 3rem 2.5rem;
-    background: linear-gradient(135deg, var(--bg2), var(--bg3));
-    border-left: 1px solid rgba(124,92,252,0.15);
-  }
-}
-
-@media (max-width: 899px) {
-  .video-side-info {
-    padding: 1.8rem 1.2rem 1rem;
-    background: var(--bg2);
-    border-top: 1px solid rgba(124,92,252,0.15);
-  }
-  .video-name-overlay { display: none; }
-}
-
-.vsi-tag {
-  font-size: 0.72rem;
-  font-family: var(--font-mono);
-  color: var(--purple-light);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.vsi-tag::before { content: ''; width: 24px; height: 2px; background: var(--purple); border-radius: 2px; }
-
-.vsi-name {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--purple-light), var(--gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1.1;
-  margin-bottom: 0.4rem;
-}
-
-.vsi-role {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--text2);
-  margin-bottom: 1rem;
-}
-
-.vsi-tagline {
-  font-size: 0.9rem;
-  color: var(--text3);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-  max-width: 420px;
-}
-.vsi-tagline strong { color: var(--gold); }
-
-.vsi-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.8rem;
-  margin-bottom: 1.5rem;
-}
-
-.vsi-stat {
-  background: var(--bg3);
-  border: 1px solid rgba(124,92,252,0.15);
-  border-radius: 10px;
-  padding: 0.8rem;
-  text-align: center;
-}
-.vsi-stat .n { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--gold); }
-.vsi-stat .l { font-size: 0.65rem; color: var(--text3); margin-top: 2px; }
-
-.vsi-btns {
-  display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-}
-
-.btn {
-  padding: 0.65rem 1.6rem;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  transition: all 0.3s;
-  cursor: pointer;
-  border: none;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.btn-primary { background: linear-gradient(135deg, var(--purple), #9b6ffc); color: #fff; }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,92,252,.4); color: #fff; }
-.btn-outline { background: transparent; border: 1px solid var(--purple); color: var(--purple-light); }
-.btn-outline:hover { background: rgba(124,92,252,.1); color: var(--purple-light); }
-
-/* Share strip */
-.video-share-strip {
-  background: var(--bg3);
-  border-top: 1px solid rgba(124,92,252,0.1);
-  border-bottom: 1px solid rgba(124,92,252,0.1);
-  padding: 0.7rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  font-size: 0.75rem;
-  color: var(--text3);
-  overflow-x: auto;
-  white-space: nowrap;
-}
-.vss-label { font-family: var(--font-mono); color: var(--purple-light); flex-shrink: 0; }
-.vss-link {
-  background: rgba(124,92,252,0.1);
-  border: 1px solid rgba(124,92,252,0.2);
-  border-radius: 6px;
-  padding: 3px 10px;
-  color: var(--text2);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  flex-shrink: 0;
-  transition: all 0.2s;
-}
-.vss-link:hover { background: rgba(124,92,252,0.2); color: var(--purple-light); }
-
-/* ═══════════════════════════════════════
-   NAV
-═══════════════════════════════════════ */
-nav { position: sticky; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2rem; backdrop-filter: blur(20px); background: rgba(8,8,15,.85); border-bottom: 1px solid rgba(124,92,252,.15); display: flex; justify-content: space-between; align-items: center; }
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2rem; backdrop-filter: blur(20px); background: rgba(8,8,15,.7); border-bottom: 1px solid rgba(124,92,252,.15); display: flex; justify-content: space-between; align-items: center; }
 .nav-logo { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; background: linear-gradient(135deg, var(--purple), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a { color: var(--text2); font-size: .9rem; font-weight: 500; transition: color .3s; }
@@ -295,25 +33,82 @@ nav { position: sticky; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2
 .mobile-menu a { display: block; padding: .8rem 0; color: var(--text2); }
 @media(max-width:768px) { .hamburger { display: flex; } .nav-links { display: none; } }
 
-/* ═══════════════════════════════════════
-   SECTIONS
-═══════════════════════════════════════ */
+/* SECTIONS */
 section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 .section-title { font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: .5rem; }
 .section-title span { background: linear-gradient(135deg, var(--purple), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .section-sub { text-align: center; color: var(--text3); margin-bottom: 3rem; font-size: .95rem; }
 
-/* HERO (keep for fallback / scroll target) */
+/* HERO */
 #hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; padding-top: 80px; }
 #particles { position: absolute; inset: 0; z-index: 0; }
-.avatar-ring { width: 140px; height: 140px; border-radius: 50%; border: 3px solid transparent; background: linear-gradient(var(--bg),var(--bg)) padding-box, linear-gradient(135deg,var(--purple),var(--gold),var(--purple-light)) border-box; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; position: relative; z-index: 1; animation: ring-spin 6s linear infinite; }
-@keyframes ring-spin { 0%,100%{ border-color: transparent; background: linear-gradient(var(--bg),var(--bg)) padding-box, linear-gradient(0deg,var(--purple),var(--gold),var(--purple-light)) border-box; } 50%{ background: linear-gradient(var(--bg),var(--bg)) padding-box, linear-gradient(180deg,var(--purple),var(--gold),var(--purple-light)) border-box; } }
-.avatar-ring img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; animation: none; }
-.hero-name { font-family: var(--font-display); font-size: 3.5rem; font-weight: 700; background: linear-gradient(135deg,var(--purple-light),var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: .5rem; position: relative; z-index: 1; }
+
+/* AVATAR — حلقة متحركة مع الصورة */
+.avatar-ring {
+  width: 160px; height: 160px; border-radius: 50%;
+  border: 3px solid transparent;
+  background: linear-gradient(var(--bg),var(--bg)) padding-box,
+              linear-gradient(135deg,var(--purple),var(--gold),var(--purple-light)) border-box;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem; position: relative; z-index: 1;
+  animation: ring-spin 6s linear infinite;
+  box-shadow: 0 0 40px rgba(124,92,252,.25);
+}
+@keyframes ring-spin {
+  0%  { background: linear-gradient(var(--bg),var(--bg)) padding-box, linear-gradient(0deg,var(--purple),var(--gold),var(--purple-light)) border-box; box-shadow: 0 0 40px rgba(124,92,252,.25); }
+  50% { background: linear-gradient(var(--bg),var(--bg)) padding-box, linear-gradient(180deg,var(--purple),var(--gold),var(--purple-light)) border-box; box-shadow: 0 0 60px rgba(240,201,108,.3); }
+  100%{ background: linear-gradient(var(--bg),var(--bg)) padding-box, linear-gradient(360deg,var(--purple),var(--gold),var(--purple-light)) border-box; box-shadow: 0 0 40px rgba(124,92,252,.25); }
+}
+.avatar-ring img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+/* Badge #OpenToWork */
+.avatar-badge {
+  position: absolute;
+  bottom: 6px; right: 6px;
+  background: linear-gradient(135deg, var(--green), #16a34a);
+  color: #fff;
+  font-size: .6rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  border: 2px solid var(--bg);
+  letter-spacing: .5px;
+  z-index: 2;
+}
+
+.hero-name { font-family: var(--font-display); font-size: 3.8rem; font-weight: 700; background: linear-gradient(135deg,var(--purple-light),var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: .5rem; position: relative; z-index: 1; }
 .hero-sub { color: var(--text2); font-family: var(--font-mono); font-size: 1rem; margin-bottom: .3rem; z-index:1; position:relative; }
-.hero-tagline { color: var(--text3); font-size: .95rem; margin-bottom: 2rem; z-index:1; position:relative; }
+.hero-tagline { color: var(--text3); font-size: .95rem; margin-bottom: 2rem; z-index:1; position:relative; max-width: 600px; }
 .hero-tagline strong { color: var(--gold); }
-.cta-group { display: flex; gap: 1rem; z-index:1; position:relative; flex-wrap: wrap; justify-content: center; }
+
+/* Disponible badge */
+.hero-available {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(74,222,128,.08); border: 1px solid rgba(74,222,128,.25);
+  border-radius: 50px; padding: 5px 16px;
+  font-size: .78rem; color: var(--green); font-weight: 600;
+  margin-bottom: 1.5rem; position: relative; z-index: 1;
+}
+.hero-available::before { content: ''; width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: pulse-dot 2s infinite; }
+@keyframes pulse-dot { 0%,100%{ opacity:1; } 50%{ opacity:.3; } }
+
+.cta-group { display: flex; gap: 1rem; z-index:1; position:relative; flex-wrap: wrap; justify-content: center; margin-bottom: 2.5rem; }
+.btn { padding: .75rem 2rem; border-radius: 50px; font-weight: 600; font-size: .9rem; transition: all .3s; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 6px; }
+.btn-primary { background: linear-gradient(135deg,var(--purple),#9b6ffc); color: #fff; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,92,252,.4); color: #fff; }
+.btn-outline { background: transparent; border: 1px solid var(--purple); color: var(--purple-light); }
+.btn-outline:hover { background: rgba(124,92,252,.1); color: var(--purple-light); }
+
+/* Links socials sous hero */
+.hero-socials { display: flex; gap: 1rem; z-index:1; position:relative; justify-content: center; flex-wrap: wrap; }
+.hero-social-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px; border-radius: 8px;
+  background: var(--bg3); border: 1px solid rgba(124,92,252,.15);
+  color: var(--text2); font-size: .78rem; font-weight: 500;
+  transition: all .2s;
+}
+.hero-social-link:hover { border-color: var(--purple); color: var(--purple-light); transform: translateY(-2px); }
 
 /* STATS GRID */
 .stats-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 1.2rem; margin-top: 2rem; }
@@ -343,10 +138,10 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 .timeline-item li { color: var(--text2); font-size: .85rem; margin-bottom: .3rem; }
 
 /* PROJECT CARDS */
-.project-card { background: var(--bg3); border: 1px solid rgba(124,92,252,.12); border-radius: var(--radius); overflow: hidden; margin-bottom: 2.5rem; transition: border-color .3s; }
-.project-card:hover { border-color: var(--purple); }
+.project-card { background: var(--bg3); border: 1px solid rgba(124,92,252,.12); border-radius: var(--radius); overflow: hidden; margin-bottom: 2.5rem; transition: border-color .3s, transform .3s; }
+.project-card:hover { border-color: var(--purple); transform: translateY(-3px); }
 .project-header { padding: 1.5rem 1.5rem .8rem; display: flex; align-items: center; gap: 1rem; }
-.project-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg,var(--purple),var(--purple-light)); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
+.project-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg,var(--purple),var(--purple-light)); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
 .project-header h3 { font-size: 1.2rem; }
 .project-header .subtitle { font-size: .8rem; color: var(--text3); }
 
@@ -361,11 +156,10 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 .demo-url { font-family: var(--font-mono); font-size: .65rem; color: var(--text3); flex: 1; text-align: center; background: rgba(255,255,255,.04); padding: 2px 8px; border-radius: 4px; }
 .demo-live { font-size: .6rem; background: rgba(74,222,128,.15); color: var(--green); padding: 2px 8px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
 .demo-live::before { content: ''; width: 5px; height: 5px; background: var(--green); border-radius: 50%; animation: pulse-dot 2s infinite; }
-@keyframes pulse-dot { 0%,100%{ opacity: 1; } 50%{ opacity: .3; } }
 .demo-body { padding: 1rem; min-height: 200px; }
 .demo-kpi-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
 .demo-kpi { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); border-radius: 6px; padding: .5rem .7rem; flex: 1; min-width: 90px; opacity: 0; animation: fadeUp .5s forwards; }
-.demo-kpi:nth-child(1){animation-delay:.1s} .demo-kpi:nth-child(2){animation-delay:.2s} .demo-kpi:nth-child(3){animation-delay:.3s} .demo-kpi:nth-child(4){animation-delay:.4s} .demo-kpi:nth-child(5){animation-delay:.5s} .demo-kpi:nth-child(6){animation-delay:.6s}
+.demo-kpi:nth-child(1){animation-delay:.1s}.demo-kpi:nth-child(2){animation-delay:.2s}.demo-kpi:nth-child(3){animation-delay:.3s}.demo-kpi:nth-child(4){animation-delay:.4s}.demo-kpi:nth-child(5){animation-delay:.5s}.demo-kpi:nth-child(6){animation-delay:.6s}
 @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 .demo-kpi .dk-label { font-size: .55rem; color: var(--text3); text-transform: uppercase; letter-spacing: .5px; }
 .demo-kpi .dk-value { font-size: .95rem; font-weight: 700; font-family: var(--font-mono); }
@@ -382,10 +176,6 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 .donut-legend { font-size: .55rem; line-height: 1.6; }
 .donut-legend span { display: flex; align-items: center; gap: 4px; }
 .donut-legend .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
-.sparkline { width: 100%; height: 40px; }
-.sparkline path { fill: none; stroke: var(--purple); stroke-width: 2; stroke-dasharray: 300; stroke-dashoffset: 300; animation: draw-line 2s forwards; }
-.sparkline .area { fill: url(#sparkGrad); opacity: 0; animation: fadeUp 1s .8s forwards; }
-@keyframes draw-line { to { stroke-dashoffset: 0; } }
 .ai-risk { background: rgba(255,255,255,.03); border-radius: 6px; padding: .7rem; margin-top: .8rem; }
 .ai-risk-title { font-size: .6rem; color: var(--text3); text-transform: uppercase; letter-spacing: .5px; margin-bottom: .5rem; }
 .risk-item { display: flex; align-items: center; gap: .5rem; margin-bottom: .4rem; font-size: .7rem; }
@@ -401,21 +191,6 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 .demo-sidebar .sb-avatar { width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(135deg,var(--purple),var(--gold)); display: inline-flex; align-items: center; justify-content: center; font-size: .45rem; font-weight: 700; margin-right: 4px; vertical-align: middle; }
 .demo-sidebar .sb-uname { font-size: .5rem; color: var(--text2); }
 .demo-main { flex: 1; }
-.schedule-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 3px; margin: .5rem 0; }
-.schedule-cell { font-size: .45rem; padding: 3px 2px; text-align: center; border-radius: 3px; background: rgba(255,255,255,.04); color: var(--text3); }
-.schedule-cell.filled { color: #fff; }
-.schedule-cell.math { background: rgba(124,92,252,.3); }
-.schedule-cell.sci { background: rgba(74,222,128,.25); }
-.schedule-cell.lit { background: rgba(240,201,108,.25); }
-.schedule-cell.art { background: rgba(248,113,113,.25); }
-.progress-row { display: flex; align-items: center; gap: .4rem; margin-bottom: .3rem; font-size: .55rem; }
-.progress-row .pr-label { width: 50px; color: var(--text3); }
-.progress-row .pr-bar { flex: 1; height: 4px; background: rgba(255,255,255,.06); border-radius: 2px; overflow: hidden; }
-.progress-row .pr-bar-fill { height: 100%; border-radius: 2px; width: 0; transition: width 1.2s ease; }
-.progress-row .pr-bar-fill.animated { width: var(--w); }
-.progress-row .pr-val { width: 28px; text-align: right; color: var(--text3); font-family: var(--font-mono); font-size: .5rem; }
-.attendance-bar { display: flex; gap: 2px; margin-top: .4rem; }
-.attendance-bar span { flex: 1; height: 14px; border-radius: 2px; }
 .project-details { padding: 1rem 1.5rem 1.5rem; }
 .project-desc { color: var(--text2); font-size: .9rem; margin-bottom: 1rem; line-height: 1.6; }
 .kpi-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .8rem; }
@@ -424,6 +199,9 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 .tech-badge { font-size: .7rem; padding: .2rem .6rem; border-radius: 4px; background: rgba(240,201,108,.1); color: var(--gold); }
 .project-link { display: inline-flex; align-items: center; gap: .4rem; font-size: .85rem; font-weight: 600; }
 .project-link:hover { text-decoration: underline; }
+.live-link { display: inline-flex; align-items: center; gap: .4rem; margin-top: .5rem; padding: .5rem 1.2rem; border-radius: 50px; background: rgba(74,222,128,.12); border: 1px solid rgba(74,222,128,.3); color: #4ade80; font-size: .8rem; font-weight: 600; transition: all .3s; }
+.live-link:hover { background: rgba(74,222,128,.2); color: #4ade80; }
+.live-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block; animation: pulse-dot 2s infinite; }
 
 /* EDUCATION */
 .edu-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.2rem; }
@@ -453,83 +231,14 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
   .demo-layout { flex-direction: column; }
   .demo-sidebar { width: 100%; }
   .demo-kpi { min-width: 70px; }
-  .hero-name { font-size: 2.2rem; }
+  .hero-name { font-size: 2.5rem; }
   .stats-grid { grid-template-columns: repeat(2,1fr); }
-  .vsi-stats { grid-template-columns: repeat(3, 1fr); }
+  section { padding: 4rem 1.2rem; }
 }
 </style>
 <base target="_blank">
 </head>
 <body>
-
-<!-- ═══════════════════════════════════════
-     VIDEO HERO — يظهر أول شيء عند فتح الصفحة
-═══════════════════════════════════════ -->
-<div id="video-hero">
-
-  <!-- الفيديو -->
-  <div class="video-wrapper">
-    <div class="video-badge">CV Vidéo 2026</div>
-    <video
-      id="cvVideo"
-      autoplay
-      muted
-      loop
-      playsinline
-      poster=""
-    >
-      <source src="Guirat_Mouna_PRO_v2.mp4" type="video/mp4">
-      <source src="https://raw.githubusercontent.com/mounaguirat10-boop/bi-dataportfolio/main/Guirat_Mouna_PRO_v2.mp4" type="video/mp4">
-    </video>
-
-    <!-- اسم على الفيديو (موبايل فقط) -->
-    <div class="video-name-overlay">
-      <h2>Mouna Guirat</h2>
-      <p>BI Analyst · Data Engineer</p>
-    </div>
-
-    <!-- أزرار تحكم -->
-    <div class="video-controls">
-      <button class="vc-btn" id="muteBtn" onclick="toggleMute()" title="Muet / Son">🔇</button>
-      <button class="vc-btn" id="playBtn" onclick="togglePlay()" title="Lecture / Pause">⏸</button>
-    </div>
-  </div>
-
-  <!-- المعلومات جانب الفيديو (على الشاشات الكبيرة تحته على الموبايل) -->
-  <div class="video-side-info">
-    <div class="vsi-tag">BI Analyst · Data Engineer · CNAM Paris</div>
-    <div class="vsi-name">GUIRAT<br>MOUNA</div>
-    <div class="vsi-role">SQL · ETL · Power BI · Python · Data Warehouse</div>
-    <div class="vsi-tagline">
-      Conçoit et déploie des <strong>systèmes BI complets</strong> —
-      6 solutions analytiques déployées en production (banque, fintech, télécom, hospitalier, éducatif).
-      <br><em>Je transforme les données en décisions.</em>
-    </div>
-
-    <div class="vsi-stats">
-      <div class="vsi-stat"><div class="n">6</div><div class="l">Systèmes BI</div></div>
-      <div class="vsi-stat"><div class="n">-87%</div><div class="l">Reporting</div></div>
-      <div class="vsi-stat"><div class="n">3</div><div class="l">Secteurs</div></div>
-    </div>
-
-    <div class="vsi-btns">
-      <a href="#projects" class="btn btn-primary" target="_self">🚀 Voir les projets</a>
-      <a href="#contact" class="btn btn-outline" target="_self">📧 Me contacter</a>
-      <a href="Guirat_Mouna_PRO_v2.mp4" download class="btn btn-outline">⬇ Télécharger CV</a>
-    </div>
-  </div>
-</div>
-
-<!-- Bande de liens rapides -->
-<div class="video-share-strip">
-  <span class="vss-label">🔗 Liens rapides :</span>
-  <a href="https://linkedin.com/in/guirat-mouna-a717a9255/" class="vss-link">💼 LinkedIn</a>
-  <a href="https://github.com/mounaguirat10-boop" class="vss-link">🐙 GitHub</a>
-  <a href="https://mounaguirat10-boop.github.io/bi-dataportfolio/" class="vss-link">🌐 Portfolio</a>
-  <a href="mailto:mounaguirat10@gmail.com" class="vss-link">📧 Email</a>
-  <span style="color: rgba(124,92,252,0.4)">|</span>
-  <span>Disponible · Tunis &amp; France</span>
-</div>
 
 <!-- NAV -->
 <nav>
@@ -555,11 +264,44 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
   <a href="#contact" target="_self" onclick="this.parentElement.classList.remove('active')">Contact</a>
 </div>
 
+<!-- HERO -->
+<section id="hero">
+  <canvas id="particles"></canvas>
+
+  <!-- صورتك -->
+  <div class="avatar-ring" style="position:relative;z-index:1">
+    <img src="photo.jpg" alt="Mouna Guirat"
+         onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=\'font-family:var(--font-display);font-size:2.8rem;font-weight:700;background:linear-gradient(135deg,var(--purple),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent\'>MG</span>'"
+    >
+    <div class="avatar-badge">#OpenToWork</div>
+  </div>
+
+  <h1 class="hero-name">GUIRAT MOUNA</h1>
+  <p class="hero-sub">SQL · ETL · Data Analytics · Power BI · Data Warehouse · Python · DAX · Streamlit</p>
+
+  <div class="hero-available">Disponible immédiatement · Tunis &amp; France</div>
+
+  <p class="hero-tagline">Conçoit et déploie des <strong>systèmes BI complets</strong> — 6 solutions analytiques déployées en production (banque, fintech, télécom, hospitalier, éducatif)<br><em style="color:var(--purple-light)">"Je transforme les données en décisions — en 3 langues, sur 3 secteurs"</em></p>
+
+  <div class="cta-group">
+    <a href="#projects" class="btn btn-primary" target="_self">🚀 Voir les projets</a>
+    <a href="#contact" class="btn btn-outline" target="_self">📧 Me contacter</a>
+    <a href="Guirat_Mouna_PRO_v2.mp4" class="btn btn-outline">🎬 CV Vidéo</a>
+  </div>
+
+  <div class="hero-socials">
+    <a href="https://linkedin.com/in/guirat-mouna-a717a9255/" class="hero-social-link">💼 LinkedIn</a>
+    <a href="https://github.com/mounaguirat10-boop" class="hero-social-link">🐙 GitHub</a>
+    <a href="mailto:mounaguirat10@gmail.com" class="hero-social-link">📧 Email</a>
+    <a href="tel:+21622289886" class="hero-social-link">📱 +216 22 289 886</a>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <h2 class="section-title"><span>À propos</span></h2>
   <p class="section-sub">BI Analyst & Data Engineer — Fintech & Banque</p>
-  <div class="reveal" style="max-width:700px;margin:0 auto 2rem;color:var(--text2);text-align:center;font-size:.95rem;">
+  <div class="reveal" style="max-width:700px;margin:0 auto 2rem;color:var(--text2);text-align:center;font-size:.95rem;line-height:1.8;">
     Analyste BI spécialisée en Data Warehouse, ETL, reporting analytique et développement de tableaux de bord. Titulaire du RNCP Niveau 6 (CNAM Paris, 2025) — Cycle Ingénieur BI en cours d'obtention (2025–2026). Six solutions analytiques déployées en production dans les secteurs bancaire, fintech, hospitalier, éducatif et télécom. Actuellement Informaticienne — Responsable Système Décisionnel chez WORLD TELECOM (PFE CNAM Paris). Disponible immédiatement pour contribuer à des projets BI à fort impact.
   </div>
   <div class="stats-grid reveal">
@@ -619,46 +361,45 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
       <h3>Informaticienne — Responsable Système Décisionnel & PFE CNAM Paris</h3>
       <div class="meta">WORLD TELECOM · Tunis · Janv. 2026 – Présent · Attestation Ref. 01/2026</div>
       <ul>
-        <li>Conception et développement d'une plateforme d'intelligence décisionnelle pour le pilotage de la performance télécom — PFE CNAM Paris (EICnam)</li>
-        <li>Conception d'un Data Warehouse (PostgreSQL) intégrant 6 sources de données opérationnelles, réduisant le temps d'accès aux indicateurs de plusieurs jours à temps réel</li>
-        <li>Développement de 10 tableaux de bord KPI interactifs (performance commerciale, réseau, incidents, stocks, clients) consultés quotidiennement par 3 profils métier distincts</li>
-        <li>Automatisation à 100% de la génération des rapports analytiques via un module IA (LLaMA 3), éliminant les extractions manuelles hebdomadaires et libérant 4+ heures/semaine</li>
-        <li>Déploiement de la solution en production en 5 mois pour 3 profils utilisateurs (direction, technicien, commercial) couvrant 10 modules métier avec interface trilingue AR/FR/EN</li>
+        <li>Conception d'un Data Warehouse (PostgreSQL) intégrant 6 sources de données opérationnelles</li>
+        <li>Développement de 10 tableaux de bord KPI interactifs consultés par 3 profils métier distincts</li>
+        <li>Automatisation à 100% de la génération des rapports analytiques via un module IA (LLaMA 3)</li>
+        <li>Déploiement en production en 5 mois — interface trilingue AR/FR/EN</li>
       </ul>
     </div>
     <div class="timeline-item">
       <h3>Data Analyst & BI Reporting Officer — Lycée Marie Curie</h3>
       <div class="meta">Mission conseil · Tunis · Déc 2022 – Fév. 2025</div>
       <ul>
-        <li>Conception et automatisation d'un système de reporting couvrant 15 indicateurs institutionnels, alimenté par 4 sources hétérogènes, sur 3 années consécutives avec 0 rupture de service</li>
-        <li>Réduction de 40% le temps de production des rapports RH et pédagogiques via l'automatisation d'un pipeline ETL Python + Power Query</li>
-        <li>Amélioration de la fiabilité des données de 35% en déployant des règles de Data Quality sur l'ensemble des flux de données</li>
+        <li>Système de reporting couvrant 15 indicateurs institutionnels sur 3 années consécutives</li>
+        <li>Réduction de 40% du temps de production des rapports via ETL Python + Power Query</li>
+        <li>Amélioration de la fiabilité des données de 35% via règles de Data Quality</li>
       </ul>
     </div>
     <div class="timeline-item">
       <h3>BI Analyst — Pôle Data Financière & Crédit · Amen Bank</h3>
       <div class="meta">Stage · Tunis · Nov 2012 – Mai 2013</div>
       <ul>
-        <li>Conçu 6 modèles de tableaux de bord KPI (portefeuille crédit, conformité fiscale, performance client)</li>
-        <li>Assuré 100% de conformité réglementaire sur 3 cycles de reporting consécutifs via requêtes SQL de contrôle Data Quality</li>
-        <li>Analysé 200+ dossiers de Risque Crédit, détecté 12% d'incohérences de données</li>
+        <li>6 modèles de tableaux de bord KPI (portefeuille crédit, conformité fiscale, performance client)</li>
+        <li>100% de conformité réglementaire sur 3 cycles de reporting consécutifs</li>
+        <li>Analyse de 200+ dossiers de Risque Crédit — détection de 12% d'incohérences</li>
       </ul>
     </div>
     <div class="timeline-item">
       <h3>Stage — Direction Centrale de Retail · ATB</h3>
       <div class="meta">Stage · Tunis · Août 2012</div>
       <ul>
-        <li>Segmenté le portefeuille clients en 3 niveaux de performance via SQL et Python</li>
-        <li>Identifié 12 KPIs commerciaux clés pour la stratégie de la Direction Centrale de Retail</li>
+        <li>Segmentation du portefeuille clients en 3 niveaux de performance via SQL et Python</li>
+        <li>Identification de 12 KPIs commerciaux clés pour la Direction Centrale de Retail</li>
       </ul>
     </div>
     <div class="timeline-item">
-      <h3>Data Analyst — BIAT</h3>
-      <div class="meta">3 Stages · Tunis · 2009–2011</div>
+      <h3>Data Analyst — BIAT (3 Stages)</h3>
+      <div class="meta">Tunis · 2009–2011</div>
       <ul>
-        <li>Stage 1 — Données Financières : Réduit de 20% les délais de traitement sur 200+ enregistrements bancaires</li>
-        <li>Stage 2 — Data & Sécurité Bancaire : Structuré le suivi de 150+ journaux d'événements sécurité, réduit le temps de réponse aux incidents de 20%</li>
-        <li>Stage 3 — Commerce Extérieur & Data Financière : Maintenu 100% de conformité réglementaire, réduit les erreurs de traitement de 25%</li>
+        <li>Données Financières : Réduction de 20% des délais de traitement sur 200+ enregistrements</li>
+        <li>Data & Sécurité Bancaire : Suivi de 150+ journaux d'événements — réduction incidents de 20%</li>
+        <li>Commerce Extérieur : 100% de conformité réglementaire — réduction des erreurs de 25%</li>
       </ul>
     </div>
   </div>
@@ -691,13 +432,13 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
         </div>
         <div class="demo-charts">
           <div class="demo-chart-box">
-            <div class="demo-chart-title">Performance Commerciale par Région</div>
+            <div class="demo-chart-title">Performance Commerciale</div>
             <div class="bar-chart" data-animate>
               <div class="bar" style="--h:65%"></div><div class="bar" style="--h:78%"></div><div class="bar" style="--h:92%"></div><div class="bar" style="--h:85%"></div><div class="bar" style="--h:70%"></div><div class="bar" style="--h:88%"></div><div class="bar" style="--h:95%"></div>
             </div>
           </div>
           <div class="demo-chart-box">
-            <div class="demo-chart-title">Répartition par Profil</div>
+            <div class="demo-chart-title">Répartition Profils</div>
             <div class="donut-wrap">
               <div class="donut" style="background:conic-gradient(var(--purple) 0% 40%, var(--gold) 40% 65%, var(--blue) 65% 100%)"></div>
               <div class="donut-legend">
@@ -709,7 +450,7 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
           </div>
         </div>
         <div class="ai-risk">
-          <div class="ai-risk-title">🤖 Module IA — Génération Automatique Rapports (LLaMA 3)</div>
+          <div class="ai-risk-title">🤖 Module IA — LLaMA 3</div>
           <div class="risk-item" style="color:var(--green)">Rapports Hebdomadaires ✓<div class="risk-bar"><div class="risk-bar-fill" style="--w:100%;background:var(--green)"></div></div></div>
           <div class="risk-item" style="color:var(--blue)">Analyse Incidents Réseau<div class="risk-bar"><div class="risk-bar-fill" style="--w:85%;background:var(--blue)"></div></div></div>
           <div class="risk-item" style="color:var(--gold)">Prévision Stocks<div class="risk-bar"><div class="risk-bar-fill" style="--w:72%;background:var(--gold)"></div></div></div>
@@ -717,7 +458,7 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
       </div>
     </div>
     <div class="project-details">
-      <p class="project-desc">Plateforme d'intelligence décisionnelle complète pour le pilotage de la performance télécom. Data Warehouse PostgreSQL intégrant 6 sources opérationnelles, 10 tableaux de bord KPI interactifs et module IA (LLaMA 3) pour l'automatisation à 100% de la génération des rapports analytiques. Interface trilingue AR/FR/EN déployée en production en 5 mois.</p>
+      <p class="project-desc">Plateforme d'intelligence décisionnelle complète — Data Warehouse PostgreSQL, 10 KPI interactifs et module IA (LLaMA 3) pour l'automatisation à 100% des rapports. Interface trilingue AR/FR/EN déployée en 5 mois.</p>
       <div class="kpi-tags"><span class="kpi-tag">6 Sources Data</span><span class="kpi-tag">10 Dashboards</span><span class="kpi-tag">LLaMA 3 IA</span><span class="kpi-tag">100% Auto</span><span class="kpi-tag">AR/FR/EN</span></div>
       <div class="tech-stack"><span class="tech-badge">PostgreSQL</span><span class="tech-badge">Python</span><span class="tech-badge">Power BI</span><span class="tech-badge">LLaMA 3</span><span class="tech-badge">ETL</span><span class="tech-badge">Streamlit</span></div>
       <a href="https://world-telecom-bi.vercel.app" class="project-link">🔗 Voir le projet →</a>
@@ -740,9 +481,7 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
           <div class="demo-kpi"><div class="dk-label">Total Clients</div><div class="dk-value" style="color:var(--purple-light)">3,000</div></div>
           <div class="demo-kpi"><div class="dk-label">Total Prêts</div><div class="dk-value" style="color:var(--gold)">125.4M</div></div>
           <div class="demo-kpi"><div class="dk-label">Score Moyen</div><div class="dk-value" style="color:var(--blue)">641</div></div>
-          <div class="demo-kpi"><div class="dk-label">Taux Défaut</div><div class="dk-value" style="color:var(--red)">28.7%</div></div>
           <div class="demo-kpi"><div class="dk-label">Précision AI</div><div class="dk-value" style="color:var(--green)">95.2%</div></div>
-          <div class="demo-kpi"><div class="dk-label">Montant Moyen</div><div class="dk-value" style="color:var(--yellow)">41,800</div></div>
         </div>
         <div class="demo-charts">
           <div class="demo-chart-box">
@@ -763,19 +502,14 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
             </div>
           </div>
         </div>
-        <div class="ai-risk">
-          <div class="ai-risk-title">🤖 AI Risk Assessment</div>
-          <div class="risk-item" style="color:var(--green)">Accept ✓<div class="risk-bar"><div class="risk-bar-fill" style="--w:62%;background:var(--green)"></div></div></div>
-          <div class="risk-item" style="color:var(--yellow)">Conditionnel ⚠<div class="risk-bar"><div class="risk-bar-fill" style="--w:24%;background:var(--yellow)"></div></div></div>
-          <div class="risk-item" style="color:var(--red)">Refus ✗<div class="risk-bar"><div class="risk-bar-fill" style="--w:14%;background:var(--red)"></div></div></div>
-        </div>
       </div>
     </div>
     <div class="project-details">
-      <p class="project-desc">Moteur de scoring risque (300–850) couvrant 300 dossiers crédit sur 24 gouvernorats — réduction de 70% du délai de décision d'octroi. Interface analytique interactive pour 500 clients.</p>
+      <p class="project-desc">Moteur de scoring risque (300–850) couvrant 300 dossiers crédit sur 24 gouvernorats — réduction de 70% du délai de décision d'octroi.</p>
       <div class="kpi-tags"><span class="kpi-tag">95.2% Précision</span><span class="kpi-tag">3000+ Clients</span><span class="kpi-tag">24 Gouvernorats</span><span class="kpi-tag">70% Réduction</span></div>
       <div class="tech-stack"><span class="tech-badge">Python</span><span class="tech-badge">Streamlit</span><span class="tech-badge">Scikit-learn</span><span class="tech-badge">Power BI</span><span class="tech-badge">SQL</span></div>
       <a href="https://bank-loan-analyzer.streamlit.app" class="project-link">🔗 Voir le projet →</a>
+      <br><a href="https://bank-loan-analyzer.streamlit.app" class="live-link"><span class="live-dot"></span> Live App</a>
     </div>
   </div>
 
@@ -797,22 +531,20 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
             <div class="sb-item active">▸ Dashboard</div>
             <div class="sb-item">▸ Transactions</div>
             <div class="sb-item">▸ Analytics</div>
-            <div class="sb-item">▸ Settings</div>
             <div class="sb-user" style="margin-top:1rem">
-              <span class="sb-avatar">MG</span><span class="sb-uname">Mouna Guirat<br><span style="font-size:.4rem;color:var(--text3)">CFO</span></span>
+              <span class="sb-avatar">MG</span><span class="sb-uname">Mouna G.</span>
             </div>
           </div>
           <div class="demo-main">
             <div class="demo-kpi-row">
               <div class="demo-kpi"><div class="dk-label">Revenus</div><div class="dk-value" style="color:var(--green)">1.45Md</div></div>
-              <div class="demo-kpi"><div class="dk-label">Bénéfice</div><div class="dk-value" style="color:var(--gold)">479M</div></div>
-              <div class="demo-kpi"><div class="dk-label">EBITDA</div><div class="dk-value" style="color:var(--blue)">545M</div></div>
+              <div class="demo-kpi"><div class="dk-label">EBITDA</div><div class="dk-value" style="color:var(--gold)">545M</div></div>
               <div class="demo-kpi"><div class="dk-label">ROE</div><div class="dk-value" style="color:var(--purple-light)">35.2%</div></div>
             </div>
             <div class="demo-chart-box">
-              <div class="demo-chart-title">Monthly Revenue Trend (TND)</div>
+              <div class="demo-chart-title">Monthly Revenue Trend</div>
               <div class="bar-chart" data-animate>
-                <div class="bar" style="--h:40%"></div><div class="bar" style="--h:55%"></div><div class="bar" style="--h:48%"></div><div class="bar" style="--h:65%"></div><div class="bar" style="--h:58%"></div><div class="bar" style="--h:72%"></div><div class="bar" style="--h:68%"></div><div class="bar" style="--h:85%"></div><div class="bar" style="--h:78%"></div><div class="bar" style="--h:92%"></div><div class="bar" style="--h:88%"></div><div class="bar" style="--h:96%"></div>
+                <div class="bar" style="--h:40%"></div><div class="bar" style="--h:55%"></div><div class="bar" style="--h:65%"></div><div class="bar" style="--h:72%"></div><div class="bar" style="--h:85%"></div><div class="bar" style="--h:88%"></div><div class="bar" style="--h:96%"></div>
               </div>
             </div>
           </div>
@@ -820,10 +552,11 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
       </div>
     </div>
     <div class="project-details">
-      <p class="project-desc">Dashboard BI complet pour l'analyse financière d'une fintech avec visualisation en temps réel des KPIs bancaires. Intégration de modèles prédictifs pour les prévisions de revenus et l'analyse EBITDA.</p>
+      <p class="project-desc">Dashboard BI complet pour l'analyse financière d'une fintech avec KPIs bancaires en temps réel. Modèles prédictifs pour les prévisions de revenus et l'analyse EBITDA.</p>
       <div class="kpi-tags"><span class="kpi-tag">1.45Md Revenus</span><span class="kpi-tag">35.2% ROE</span><span class="kpi-tag">+18% Croissance</span></div>
-      <div class="tech-stack"><span class="tech-badge">Power BI</span><span class="tech-badge">Python</span><span class="tech-badge">SQL Server</span><span class="tech-badge">SSIS</span><span class="tech-badge">DAX</span></div>
+      <div class="tech-stack"><span class="tech-badge">Power BI</span><span class="tech-badge">Python</span><span class="tech-badge">SQL Server</span><span class="tech-badge">DAX</span></div>
       <a href="https://fintech-bi-dashboard.onrender.com" class="project-link">🔗 Voir le projet →</a>
+      <br><a href="https://fintech-bi-dashboard.onrender.com" class="live-link"><span class="live-dot"></span> Live App</a>
     </div>
   </div>
 
@@ -832,41 +565,12 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
       <div class="project-icon" style="background:linear-gradient(135deg,var(--gold),#d4a030)">🎓</div>
       <div><h3>SchoolApp ERP</h3><div class="subtitle">Système de gestion scolaire intelligent</div></div>
     </div>
-    <div class="demo-mockup">
-      <div class="demo-browser-bar">
-        <div class="demo-dots"><span></span><span></span><span></span></div>
-        <div class="demo-url">schoolapp-erp-2026.vercel.app</div>
-        <div class="demo-live">Live</div>
-      </div>
-      <div class="demo-body">
-        <div class="demo-kpi-row">
-          <div class="demo-kpi"><div class="dk-label">Élèves</div><div class="dk-value" style="color:var(--gold)">1,247</div></div>
-          <div class="demo-kpi"><div class="dk-label">Taux Réussite</div><div class="dk-value" style="color:var(--green)">98%</div></div>
-          <div class="demo-kpi"><div class="dk-label">Enseignants</div><div class="dk-value" style="color:var(--purple-light)">42</div></div>
-          <div class="demo-kpi"><div class="dk-label">Classes</div><div class="dk-value" style="color:var(--blue)">15</div></div>
-        </div>
-        <div class="demo-charts">
-          <div class="demo-chart-box">
-            <div class="demo-chart-title">Moyennes par Matière</div>
-            <div class="bar-chart" data-animate>
-              <div class="bar" style="--h:82%"></div><div class="bar" style="--h:75%"></div><div class="bar" style="--h:88%"></div><div class="bar" style="--h:68%"></div>
-            </div>
-          </div>
-          <div class="demo-chart-box">
-            <div class="demo-chart-title">Assiduité</div>
-            <div class="donut-wrap">
-              <div class="donut" style="background:conic-gradient(var(--green) 0% 93%, rgba(255,255,255,.1) 93% 100%)"></div>
-              <div class="donut-legend"><span><span class="dot" style="background:var(--green)"></span>Présent 93%</span><span><span class="dot" style="background:rgba(255,255,255,.1)"></span>Absent 7%</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="project-details">
+    <div class="project-details" style="padding-top:1rem">
       <p class="project-desc">Système ERP complet pour la gestion scolaire : inscriptions, emploi du temps, notes, assiduité et rapports pédagogiques. Dashboard Power BI intégré pour le pilotage de la performance éducative.</p>
       <div class="kpi-tags"><span class="kpi-tag">1247 Élèves</span><span class="kpi-tag">98% Réussite</span><span class="kpi-tag">15 Classes</span></div>
       <div class="tech-stack"><span class="tech-badge">Python</span><span class="tech-badge">Streamlit</span><span class="tech-badge">Power BI</span><span class="tech-badge">SQLite</span></div>
       <a href="https://schoolapp2026.streamlit.app" class="project-link">🔗 Voir le projet →</a>
+      <br><a href="https://schoolapp2026.streamlit.app" class="live-link"><span class="live-dot"></span> Live App</a>
     </div>
   </div>
 </section>
@@ -877,9 +581,9 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
   <p class="section-sub">Diplômes et certifications</p>
   <div class="edu-grid reveal">
     <div class="edu-card">
-      <h4>Cycle Ingénieur Informatique — Spécialité Business Intelligence</h4>
-      <div class="edu-meta">CNAM Paris — École d'Ingénieurs (EICnam) · 2025–2026</div>
-      <p>Data Warehouse & Data Visualisation — Diplôme en cours d'obtention</p>
+      <h4>Cycle Ingénieur Informatique — Business Intelligence</h4>
+      <div class="edu-meta">CNAM Paris — EICnam · 2025–2026</div>
+      <p>Data Warehouse & Data Visualisation — en cours</p>
     </div>
     <div class="edu-card">
       <h4>RNCP Niveau 6 — Concepteur Architecte Informatique</h4>
@@ -894,7 +598,7 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
     <div class="edu-card">
       <h4>Technicien Supérieur — Développement Web</h4>
       <div class="edu-meta">2013</div>
-      <p>Formation en développement web et technologies associées</p>
+      <p>Développement web et technologies associées</p>
     </div>
     <div class="edu-card">
       <h4>Baccalauréat Économie de Gestion</h4>
@@ -904,7 +608,7 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
     <div class="edu-card">
       <h4>Certifications</h4>
       <div class="edu-meta">Coursera · Udemy · CNAM Paris</div>
-      <p>Data Analysis with Python (Coursera) · Power BI Masterclass (Udemy) · RNCP Niveau 6 Informatique Décisionnelle (CNAM Paris, 2025)</p>
+      <p>Data Analysis with Python · Power BI Masterclass · RNCP Niveau 6 BI</p>
     </div>
   </div>
 </section>
@@ -942,7 +646,7 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
     <div class="contact-card">
       <div class="cc-icon">🌐</div>
       <h4>Portfolio</h4>
-      <a href="https://mounaguirat10-boop.github.io/bi-dataportfolio/">mounaguirat10-boop.github.io/bi-dataportfolio/</a>
+      <a href="https://mounaguirat10-boop.github.io/bi-data-portfolio/">mounaguirat10-boop.github.io/bi-data-portfolio</a>
     </div>
   </div>
 </section>
@@ -957,83 +661,57 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
 </footer>
 
 <script>
-// ═══ VIDEO CONTROLS ═══
-const vid = document.getElementById('cvVideo');
-const muteBtn = document.getElementById('muteBtn');
-const playBtn = document.getElementById('playBtn');
-
-function toggleMute() {
-  vid.muted = !vid.muted;
-  muteBtn.textContent = vid.muted ? '🔇' : '🔊';
-}
-function togglePlay() {
-  if (vid.paused) { vid.play(); playBtn.textContent = '⏸'; }
-  else { vid.pause(); playBtn.textContent = '▶'; }
-}
-
-// Autoplay with fallback
-vid.play().catch(() => {
-  vid.muted = true;
-  vid.play();
-});
-
-// ═══ PARTICLES ═══
+// PARTICLES
 (function(){
-  const canvas = document.createElement('canvas');
-  const hero = document.getElementById('hero');
-  if (!hero) return;
-  canvas.id = 'particles';
-  canvas.style.cssText = 'position:absolute;inset:0;z-index:0;';
-  hero.insertBefore(canvas, hero.firstChild);
-  const ctx = canvas.getContext('2d');
+  const c = document.getElementById('particles');
+  const ctx = c.getContext('2d');
   let W, H, particles = [];
-  function resize(){ W = canvas.width = hero.offsetWidth; H = canvas.height = hero.offsetHeight; }
+  function resize(){ W = c.width = c.parentElement.offsetWidth; H = c.height = c.parentElement.offsetHeight; }
   resize(); window.addEventListener('resize', resize);
   class P {
-    constructor(){ this.reset() }
-    reset(){ this.x=Math.random()*W; this.y=Math.random()*H; this.vx=(Math.random()-.5)*.3; this.vy=(Math.random()-.5)*.3; this.r=Math.random()*1.5+.5; this.a=Math.random()*.5+.1 }
-    update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>W)this.vx*=-1; if(this.y<0||this.y>H)this.vy*=-1; }
-    draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle=`rgba(124,92,252,${this.a})`; ctx.fill() }
+    constructor(){this.reset()}
+    reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.5+.5;this.a=Math.random()*.5+.1}
+    update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W)this.vx*=-1;if(this.y<0||this.y>H)this.vy*=-1;}
+    draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(124,92,252,${this.a})`;ctx.fill()}
   }
   for(let i=0;i<60;i++) particles.push(new P());
   function draw(){
     ctx.clearRect(0,0,W,H);
-    particles.forEach(p=>{ p.update(); p.draw() });
-    for(let i=0;i<particles.length;i++){
+    particles.forEach(p=>{p.update();p.draw()});
+    for(let i=0;i<particles.length;i++)
       for(let j=i+1;j<particles.length;j++){
-        const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
+        const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y;
         const d=Math.sqrt(dx*dx+dy*dy);
-        if(d<120){ ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle=`rgba(124,92,252,${.15*(1-d/120)})`; ctx.stroke() }
+        if(d<120){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(124,92,252,${.15*(1-d/120)})`;ctx.stroke()}
       }
-    }
     requestAnimationFrame(draw);
   }
   draw();
 })();
 
-// ═══ SCROLL REVEAL ═══
+// SCROLL REVEAL
 const revealObs = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target) } });
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}});
 },{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
 
-// ═══ SKILL BARS ═══
+// SKILL BARS
 const skillObs = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.querySelectorAll('.skill-bar-fill').forEach(bar=>{ bar.style.width = bar.dataset.w + '%'; }); skillObs.unobserve(e.target); } });
+  entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.skill-bar-fill').forEach(b=>{b.style.width=b.dataset.w+'%';});skillObs.unobserve(e.target);}});
 },{threshold:.3});
 document.querySelectorAll('.skills-grid').forEach(el=>skillObs.observe(el));
 
-// ═══ BAR CHARTS ═══
+// BAR CHARTS
 const chartObs = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.querySelectorAll('.bar').forEach((bar,i)=>{ setTimeout(()=>bar.classList.add('animated'), i*80); }); chartObs.unobserve(e.target); } });
+  entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.bar').forEach((b,i)=>setTimeout(()=>b.classList.add('animated'),i*80));chartObs.unobserve(e.target);}});
 },{threshold:.3});
 document.querySelectorAll('.bar-chart[data-animate]').forEach(el=>chartObs.observe(el));
 
-// ═══ RISK BARS ═══
+// RISK BARS
 const riskObs = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.querySelectorAll('.risk-bar-fill, .pr-bar-fill').forEach((bar,i)=>{ setTimeout(()=>bar.classList.add('animated'), i*200); }); riskObs.unobserve(e.target); } });
+  entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.risk-bar-fill').forEach((b,i)=>setTimeout(()=>b.classList.add('animated'),i*200));riskObs.unobserve(e.target);}});
 },{threshold:.3});
-document.querySelectorAll('.ai-risk, .demo-chart-box').forEach(el=>riskObs.observe(el));
+document.querySelectorAll('.ai-risk').forEach(el=>riskObs.observe(el));
 </script>
 </body>
 </html>
