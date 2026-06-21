@@ -43,7 +43,7 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 #hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; padding-top: 80px; }
 #particles { position: absolute; inset: 0; z-index: 0; }
 
-/* AVATAR — حلقة متحركة مع الصورة */
+/* AVATAR */
 .avatar-ring {
   width: 160px; height: 160px; border-radius: 50%;
   border: 3px solid transparent;
@@ -99,8 +99,54 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 .btn-outline { background: transparent; border: 1px solid var(--purple); color: var(--purple-light); }
 .btn-outline:hover { background: rgba(124,92,252,.1); color: var(--purple-light); }
 
+/* VIDEO SECTION */
+.video-section {
+  margin-top: 2rem;
+  z-index: 1;
+  position: relative;
+  max-width: 500px;
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid rgba(124,92,252,.2);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.video-section h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--purple-light);
+}
+.video-container {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+}
+.video-container video {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+.video-fallback {
+  display: none;
+  text-align: center;
+  padding: 2rem;
+  color: var(--text2);
+}
+.video-fallback a {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .5rem 1.5rem;
+  background: linear-gradient(135deg,var(--purple),var(--purple-light));
+  color: #fff;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
 /* Links socials sous hero */
-.hero-socials { display: flex; gap: 1rem; z-index:1; position:relative; justify-content: center; flex-wrap: wrap; }
+.hero-socials { display: flex; gap: 1rem; z-index:1; position:relative; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
 .hero-social-link {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 6px 14px; border-radius: 8px;
@@ -234,8 +280,10 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
   .hero-name { font-size: 2.5rem; }
   .stats-grid { grid-template-columns: repeat(2,1fr); }
   section { padding: 4rem 1.2rem; }
+  .video-section { max-width: 100%; }
 }
 </style>
+<base target="_blank">
 <base target="_blank">
 </head>
 <body>
@@ -271,7 +319,7 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
   <!-- صورتك -->
   <div class="avatar-ring" style="position:relative;z-index:1">
     <img src="photo.jpg" alt="Mouna Guirat"
-         onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=\'font-family:var(--font-display);font-size:2.8rem;font-weight:700;background:linear-gradient(135deg,var(--purple),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent\'>MG</span>'"
+         onerror="this.style.display='none';this.parentElement.innerHTML+='<span style='font-family:var(--font-display);font-size:2.8rem;font-weight:700;background:linear-gradient(135deg,var(--purple),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent'>MG</span>'"
     >
     <div class="avatar-badge">#OpenToWork</div>
   </div>
@@ -286,7 +334,23 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
   <div class="cta-group">
     <a href="#projects" class="btn btn-primary" target="_self">🚀 Voir les projets</a>
     <a href="#contact" class="btn btn-outline" target="_self">📧 Me contacter</a>
-    <a href="Guirat_Mouna_PRO_v2.mp4" class="btn btn-outline">🎬 CV Vidéo</a>
+  </div>
+
+  <!-- VIDEO SECTION -->
+  <div class="video-section">
+    <h3>🎬 CV Vidéo</h3>
+    <div class="video-container">
+      <video controls preload="metadata" poster="photo.jpg">
+        <source src="https://raw.githubusercontent.com/mounaguirat10-boop/bi-data-portfolio/main/Guirat_Mouna_PRO.mp4" type="video/mp4">
+        <div class="video-fallback" style="display:block;">
+          <p>⚠️ Le navigateur ne supporte pas la lecture vidéo.</p>
+          <a href="https://raw.githubusercontent.com/mounaguirat10-boop/bi-data-portfolio/main/Guirat_Mouna_PRO.mp4" download>📥 Télécharger le CV Vidéo</a>
+        </div>
+      </video>
+    </div>
+    <p style="margin-top:1rem;font-size:.8rem;color:var(--text3);">
+      💡 Si la vidéo ne charge pas, <a href="https://raw.githubusercontent.com/mounaguirat10-boop/bi-data-portfolio/main/Guirat_Mouna_PRO.mp4" style="color:var(--purple-light);text-decoration:underline;">cliquez ici pour la télécharger</a>
+    </p>
   </div>
 
   <div class="hero-socials">
