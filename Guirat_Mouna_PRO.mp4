@@ -341,15 +341,15 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
     <h3>🎬 CV Vidéo</h3>
     <div class="video-container">
       <video controls preload="metadata" poster="photo.jpg">
-        <source src="https://raw.githubusercontent.com/mounaguirat10-boop/bi-data-portfolio/main/Guirat_Mouna_PRO.mp4" type="video/mp4">
+        <source src="https://mounaguirat10-boop.github.io/bi-data-portfolio/Guirat_Mouna_PRO.mp4" type="video/mp4">
         <div class="video-fallback" style="display:block;">
           <p>⚠️ Le navigateur ne supporte pas la lecture vidéo.</p>
-          <a href="https://raw.githubusercontent.com/mounaguirat10-boop/bi-data-portfolio/main/Guirat_Mouna_PRO.mp4" download>📥 Télécharger le CV Vidéo</a>
+          <a href="https://mounaguirat10-boop.github.io/bi-data-portfolio/Guirat_Mouna_PRO.mp4" download>📥 Télécharger le CV Vidéo</a>
         </div>
       </video>
     </div>
     <p style="margin-top:1rem;font-size:.8rem;color:var(--text3);">
-      💡 Si la vidéo ne charge pas, <a href="https://raw.githubusercontent.com/mounaguirat10-boop/bi-data-portfolio/main/Guirat_Mouna_PRO.mp4" style="color:var(--purple-light);text-decoration:underline;">cliquez ici pour la télécharger</a>
+      💡 Si la vidéo ne charge pas, <a href="https://mounaguirat10-boop.github.io/bi-data-portfolio/Guirat_Mouna_PRO.mp4" style="color:var(--purple-light);text-decoration:underline;">cliquez ici pour la télécharger</a>
     </p>
   </div>
 
