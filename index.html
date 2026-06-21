@@ -197,6 +197,7 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
 </style>
 <base target="_blank">
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
@@ -265,20 +266,107 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
   <h2 class="section-title">🎬 <span>Présentation Vidéo</span></h2>
   <p class="section-sub">Découvrez mon parcours et mes compétences en vidéo</p>
 
-  <div style="display: flex; justify-content: center; margin-top: 2rem;">
+  <div style="display: flex; justify-content: center; margin-top: 2rem; flex-direction: column; align-items: center;">
+
+    <!-- Video Player with error handling -->
     <video 
+      id="portfolio-video"
       controls 
       width="100%" 
       style="max-width: 800px; border-radius: var(--radius); box-shadow: 0 0 30px rgba(124,92,252,0.2);"
-      poster="thumbnail.jpg">
+      poster="thumbnail.jpg"
+      preload="metadata">
+      <!-- Try multiple source formats for better compatibility -->
       <source src="Guirat_Mouna_PRO.mp4" type="video/mp4">
+      <source src="Guirat_Mouna_PRO.webm" type="video/webm">
+      <!-- Fallback message -->
       <p style="color: var(--text2); text-align: center; padding: 2rem;">
         Votre navigateur ne supporte pas la lecture vidéo. 
         <a href="Guirat_Mouna_PRO.mp4" style="color: var(--purple-light);">Télécharger la vidéo</a>
       </p>
     </video>
+
+    <!-- Video status indicator -->
+    <div id="video-status" style="margin-top: 1rem; padding: 0.8rem 1.5rem; border-radius: 8px; background: rgba(124,92,252,0.1); border: 1px solid rgba(124,92,252,0.3); color: var(--text2); font-size: 0.85rem; display: none;">
+      <span id="status-icon">⏳</span> <span id="status-text">Chargement de la vidéo...</span>
+    </div>
+
   </div>
 </section>
+
+<!-- VIDEO HELP / TROUBLESHOOTING -->
+<section id="video-help" style="display: none; padding: 2rem; max-width: 800px; margin: 2rem auto; background: var(--bg3); border-radius: var(--radius); border: 1px solid rgba(248,113,113,0.3);">
+  <h3 style="color: var(--red); margin-bottom: 1rem;">⚠️ Problème de chargement vidéo détecté</h3>
+
+  <div style="color: var(--text2); line-height: 1.8; font-size: 0.9rem;">
+    <p><strong>Solutions possibles :</strong></p>
+
+    <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+      <li style="margin-bottom: 0.8rem;">
+        <strong>Vérifier le fichier vidéo sur GitHub :</strong><br>
+        Assurez-vous que <code style="background: var(--bg4); padding: 2px 6px; border-radius: 4px; color: var(--gold);">Guirat_Mouna_PRO.mp4</code> est bien uploadé dans votre repository.
+      </li>
+
+      <li style="margin-bottom: 0.8rem;">
+        <strong>Vérifier la casse du nom de fichier :</strong><br>
+        GitHub est sensible à la casse. Vérifiez que le nom correspond exactement.
+      </li>
+
+      <li style="margin-bottom: 0.8rem;">
+        <strong>Taille du fichier :</strong><br>
+        GitHub a une limite de 100 Mo par fichier. Si votre vidéo dépasse cette taille, utilisez 
+        <a href="https://git-lfs.github.com/" target="_blank" style="color: var(--purple-light);">Git LFS</a> ou hébergez-la ailleurs.
+      </li>
+
+      <li style="margin-bottom: 0.8rem;">
+        <strong>Utiliser YouTube (Recommandé) :</strong><br>
+        Uploadez votre vidéo sur YouTube en mode "Non listée", puis remplacez le code vidéo par un iframe YouTube.
+      </li>
+
+      <li style="margin-bottom: 0.8rem;">
+        <strong>Vérifier le chemin du fichier :</strong><br>
+        Si votre vidéo est dans un sous-dossier, modifiez le src en conséquence.
+      </li>
+    </ol>
+
+    <p style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+      <strong>Besoin d'aide ?</strong> Vérifiez la console du navigateur (F12 → Console) pour voir les messages d'erreur exacts.
+    </p>
+  </div>
+</section>
+
+<script>
+// Video loading detection and fallback
+document.addEventListener('DOMContentLoaded', function() {
+  const video = document.getElementById('portfolio-video');
+  const statusDiv = document.getElementById('video-status');
+  const statusIcon = document.getElementById('status-icon');
+  const statusText = document.getElementById('status-text');
+
+  if (video) {
+    statusDiv.style.display = 'block';
+
+    video.addEventListener('loadeddata', function() {
+      statusDiv.style.background = 'rgba(74,222,128,0.1)';
+      statusDiv.style.borderColor = 'rgba(74,222,128,0.3)';
+      statusIcon.textContent = '✅';
+      statusText.textContent = 'Vidéo chargée avec succès !';
+      setTimeout(() => { statusDiv.style.display = 'none'; }, 3000);
+    });
+
+    video.addEventListener('error', function(e) {
+      statusDiv.style.background = 'rgba(248,113,113,0.1)';
+      statusDiv.style.borderColor = 'rgba(248,113,113,0.3)';
+      statusIcon.textContent = '⚠️';
+      statusText.innerHTML = 'Vidéo non trouvée. <a href="#video-help" style="color: var(--purple-light);">Voir les solutions ci-dessous</a>';
+
+      // Show help section
+      const helpSection = document.getElementById('video-help');
+      if (helpSection) helpSection.style.display = 'block';
+    });
+  }
+});
+</script>
 
 <!-- SKILLS -->
 <section id="skills">
