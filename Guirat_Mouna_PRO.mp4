@@ -1,22 +1,3 @@
-<!-- قسم الفيديو التعريفي -->
-<section id="video-presentation" style="padding: 60px 20px; text-align: center; background: #0a0a0a;">
-    <h2 style="color: #fff; margin-bottom: 30px; font-family: 'Segoe UI', sans-serif;">
-        🎬 Présentation Vidéo
-    </h2>
-    
-    <video 
-        controls 
-        width="80%" 
-        max-width="800px"
-        style="border-radius: 12px; box-shadow: 0 0 30px rgba(0,255,100,0.2);"
-        poster="thumbnail.jpg">
-        
-        <source src="Guirat_Mouna_PRO.mp4" type="video/mp4">
-        
-        <!-- إذا لم يدعم المتصفح الفيديو -->
-        <p style="color: #fff;">
-            Votre navigateur ne supporte pas la lecture vidéo. 
-            <a href="Guirat_Mouna_PRO.mp4" style="color: #00ff64;">Télécharger la vidéo</a>
-        </p>
-    </video>
-</section>
+version https://git-lfs.github.com/spec/v1
+oid sha256:878caac4dcaaac6665220a8a93de817f7e85c501f927f4ab3720f3dee8e21f82
+size 875
