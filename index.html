@@ -196,6 +196,7 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
 }
 </style>
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
@@ -204,6 +205,7 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
   <div class="nav-logo">MG.</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#video">Vidéo</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Expérience</a></li>
     <li><a href="#projects">Projects</a></li>
@@ -217,6 +219,7 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
 </nav>
 <div class="mobile-menu">
   <a href="#about" onclick="this.parentElement.classList.remove('active')">About</a>
+  <a href="#video" onclick="this.parentElement.classList.remove('active')">Vidéo</a>
   <a href="#skills" onclick="this.parentElement.classList.remove('active')">Skills</a>
   <a href="#experience" onclick="this.parentElement.classList.remove('active')">Expérience</a>
   <a href="#projects" onclick="this.parentElement.classList.remove('active')">Projects</a>
@@ -254,6 +257,26 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
     <div class="stat-card"><div class="num">10</div><div class="label">Dashboards KPI Telecom</div></div>
     <div class="stat-card"><div class="num">3</div><div class="label">Profils utilisateurs</div></div>
     <div class="stat-card"><div class="num">AR/FR/EN</div><div class="label">Interface trilingue</div></div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video">
+  <h2 class="section-title">🎬 <span>Présentation Vidéo</span></h2>
+  <p class="section-sub">Découvrez mon parcours et mes compétences en vidéo</p>
+
+  <div style="display: flex; justify-content: center; margin-top: 2rem;">
+    <video 
+      controls 
+      width="100%" 
+      style="max-width: 800px; border-radius: var(--radius); box-shadow: 0 0 30px rgba(124,92,252,0.2);"
+      poster="thumbnail.jpg">
+      <source src="Guirat_Mouna_PRO.mp4" type="video/mp4">
+      <p style="color: var(--text2); text-align: center; padding: 2rem;">
+        Votre navigateur ne supporte pas la lecture vidéo. 
+        <a href="Guirat_Mouna_PRO.mp4" style="color: var(--purple-light);">Télécharger la vidéo</a>
+      </p>
+    </video>
   </div>
 </section>
 
