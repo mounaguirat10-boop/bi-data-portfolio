@@ -205,6 +205,52 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 .cert-lightbox img{max-width:min(900px,92vw);max-height:88vh;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.1);}
 .cert-lightbox-close{position:absolute;top:1.5rem;right:1.5rem;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:1.3rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;}
 .cert-lightbox-close:hover{background:rgba(232,98,154,.3);}
+/* CV ANALYZER ATS */
+#cv-analyzer .analyzer-wrap { max-width: 900px; margin: 0 auto; }
+.upload-zone { background: var(--bg3); border: 2px dashed rgba(124,92,252,.3); border-radius: var(--radius); padding: 3rem 2rem; text-align: center; cursor: pointer; transition: all .3s ease; }
+.upload-zone:hover, .upload-zone.dragover { border-color: var(--purple); background: rgba(124,92,252,.06); }
+.upload-zone .uz-icon { font-size: 3rem; margin-bottom: 1rem; }
+.upload-zone .uz-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: .4rem; }
+.upload-zone .uz-sub { color: var(--text3); font-size: .85rem; }
+.upload-zone input[type=file] { display: none; }
+.jd-box { margin-top: 1.5rem; }
+.jd-box label { display: block; font-size: .85rem; color: var(--text2); margin-bottom: .5rem; }
+.jd-box textarea { width: 100%; min-height: 90px; background: var(--bg3); border: 1px solid rgba(124,92,252,.2); border-radius: var(--radius); padding: .9rem; color: var(--text); font-family: var(--font-body); font-size: .85rem; resize: vertical; }
+.jd-box textarea:focus { outline: none; border-color: var(--purple); }
+.analyzer-status { text-align: center; padding: 2rem; color: var(--text2); font-family: var(--font-mono); font-size: .85rem; }
+.analyzer-status .spinner { width: 32px; height: 32px; border: 3px solid rgba(124,92,252,.2); border-top-color: var(--purple); border-radius: 50%; margin: 0 auto 1rem; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.ats-results { margin-top: 2rem; }
+.ats-score-row { display: flex; align-items: center; gap: 2rem; background: var(--bg3); border: 1px solid rgba(124,92,252,.15); border-radius: var(--radius); padding: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
+.ats-score-circle { position: relative; width: 140px; height: 140px; flex-shrink: 0; }
+.ats-score-circle svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+.ats-score-circle .track { fill: none; stroke: var(--bg2); stroke-width: 10; }
+.ats-score-circle .fill { fill: none; stroke-width: 10; stroke-linecap: round; transition: stroke-dashoffset 1.2s ease; }
+.ats-score-circle .score-label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.ats-score-circle .score-num { font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: var(--text); }
+.ats-score-circle .score-den { font-size: .7rem; color: var(--text3); font-family: var(--font-mono); }
+.ats-score-verdict { flex: 1; min-width: 200px; }
+.ats-score-verdict h3 { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: .4rem; }
+.ats-score-verdict p { color: var(--text2); font-size: .9rem; line-height: 1.6; }
+.ats-cats { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.ats-cat { background: var(--bg3); border: 1px solid rgba(124,92,252,.12); border-radius: var(--radius); padding: 1.2rem; }
+.ats-cat-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: .6rem; }
+.ats-cat-head span:first-child { font-size: .85rem; color: var(--text2); font-weight: 600; }
+.ats-cat-head span:last-child { font-family: var(--font-mono); font-size: .85rem; font-weight: 700; }
+.ats-cat-bar { height: 6px; background: var(--bg2); border-radius: 3px; overflow: hidden; }
+.ats-cat-bar-fill { height: 100%; border-radius: 3px; width: 0; transition: width 1s ease; }
+.ats-tips { background: var(--bg3); border: 1px solid rgba(124,92,252,.12); border-radius: var(--radius); padding: 1.5rem; }
+.ats-tips h4 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 1rem; color: var(--text); }
+.ats-tip { display: flex; align-items: flex-start; gap: .7rem; padding: .7rem 0; border-bottom: 1px solid rgba(255,255,255,.05); font-size: .85rem; color: var(--text2); line-height: 1.5; }
+.ats-tip:last-child { border-bottom: none; }
+.ats-tip .tip-icon { flex-shrink: 0; font-size: 1.1rem; margin-top: -1px; }
+.ats-tip.good .tip-icon { color: var(--green); }
+.ats-tip.warn .tip-icon { color: var(--yellow); }
+.ats-tip.bad .tip-icon { color: var(--red); }
+.ats-reset-btn { display: block; margin: 1.5rem auto 0; padding: .7rem 1.8rem; border-radius: 50px; background: transparent; border: 1px solid var(--purple); color: var(--purple-light); font-size: .85rem; font-weight: 600; cursor: pointer; transition: all .3s; }
+.ats-reset-btn:hover { background: rgba(124,92,252,.1); }
+.privacy-note { text-align: center; font-size: .75rem; color: var(--text3); margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: .4rem; }
+
 /* CONTACT */
 .contact-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 1.2rem; }
 .contact-card { background: var(--bg3); border: 1px solid rgba(124,92,252,.12); border-radius: var(--radius); padding: 1.5rem; text-align: center; transition: transform .3s, border-color .3s; }
@@ -244,6 +290,7 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
     <li><a href="#experience">Expérience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#cv-analyzer">CV ATS</a></li>
     <li><a href="#education">Formation</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://mounaguirat10-boop.github.io/bi-data-portfolio/" target="_blank">Portfolio</a></li>
@@ -259,6 +306,7 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
   <a href="#experience" onclick="this.parentElement.classList.remove('active')">Expérience</a>
   <a href="#projects" onclick="this.parentElement.classList.remove('active')">Projects</a>
   <a href="#certifications" onclick="this.parentElement.classList.remove('active')">Certifications</a>
+  <a href="#cv-analyzer" onclick="this.parentElement.classList.remove('active')">CV ATS</a>
   <a href="#education" onclick="this.parentElement.classList.remove('active')">Formation</a>
   <a href="#contact" onclick="this.parentElement.classList.remove('active')">Contact</a>
 </div>
@@ -886,6 +934,31 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
   <div class="cert-lightbox-close" onclick="closeCertLightbox(event)">✕</div>
   <img id="certLightboxImg" src="" alt="Certificat - vue agrandie">
 </div>
+
+<!-- CV ANALYZER ATS -->
+<section id="cv-analyzer">
+  <h2 class="section-title">🎯 <span>Analyseur CV — ATS</span></h2>
+  <p class="section-sub">Testez la compatibilité de votre CV avec les systèmes de recrutement automatisés (ATS)</p>
+  <div class="analyzer-wrap reveal">
+
+    <div class="upload-zone" id="uploadZone" onclick="document.getElementById('cvFileInput').click()">
+      <div class="uz-icon">📄</div>
+      <div class="uz-title">Glissez votre CV ici ou cliquez pour parcourir</div>
+      <div class="uz-sub">Format PDF uniquement · Analysé localement dans votre navigateur</div>
+      <input type="file" id="cvFileInput" accept="application/pdf">
+    </div>
+
+    <div class="jd-box">
+      <label>📋 Coller une offre d'emploi (optionnel — améliore l'analyse des mots-clés)</label>
+      <textarea id="jdInput" placeholder="Collez ici la description du poste visé pour comparer les mots-clés de votre CV avec les exigences de l'offre..."></textarea>
+    </div>
+
+    <div id="analyzerStatus"></div>
+    <div id="atsResults"></div>
+
+    <p class="privacy-note">🔒 100% privé — votre CV n'est jamais envoyé nulle part, tout le traitement se fait dans votre navigateur</p>
+  </div>
+</section>
 
 <!-- CONTACT -->
 <section id="contact">
@@ -2418,6 +2491,264 @@ setTimeout(()=>togglePlay(),1300);
 </html>
 `;
     hospitalFrame.srcdoc = hospitalSrc;
+  }
+})();
+</script>
+
+<!-- CV ATS Analyzer -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(function(){
+  if (window['pdfjsLib']) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  }
+
+  const uploadZone = document.getElementById('uploadZone');
+  const fileInput = document.getElementById('cvFileInput');
+  const statusEl = document.getElementById('analyzerStatus');
+  const resultsEl = document.getElementById('atsResults');
+  const jdInput = document.getElementById('jdInput');
+
+  // Drag & drop
+  ['dragenter','dragover'].forEach(evt => uploadZone.addEventListener(evt, e => { e.preventDefault(); uploadZone.classList.add('dragover'); }));
+  ['dragleave','drop'].forEach(evt => uploadZone.addEventListener(evt, e => { e.preventDefault(); uploadZone.classList.remove('dragover'); }));
+  uploadZone.addEventListener('drop', e => {
+    const f = e.dataTransfer.files[0];
+    if (f) handleFile(f);
+  });
+  fileInput.addEventListener('change', e => {
+    const f = e.target.files[0];
+    if (f) handleFile(f);
+  });
+
+  async function handleFile(file){
+    resultsEl.innerHTML = '';
+    if (file.type !== 'application/pdf'){
+      statusEl.innerHTML = '<div class="analyzer-status" style="color:var(--red)">⚠️ Veuillez déposer un fichier PDF.</div>';
+      return;
+    }
+    statusEl.innerHTML = '<div class="analyzer-status"><div class="spinner"></div>Extraction et analyse du CV en cours...</div>';
+
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const text = await extractPdfText(arrayBuffer);
+      const fileSizeKB = file.size / 1024;
+      const analysis = runAtsAnalysis(text, fileSizeKB, jdInput.value.trim());
+      statusEl.innerHTML = '';
+      renderResults(analysis, file.name);
+    } catch(err){
+      console.error(err);
+      statusEl.innerHTML = '<div class="analyzer-status" style="color:var(--red)">❌ Erreur lors de la lecture du PDF. Réessayez avec un autre fichier.</div>';
+    }
+  }
+
+  async function extractPdfText(arrayBuffer){
+    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    let fullText = '';
+    let numPages = pdf.numPages;
+    for (let i = 1; i <= numPages; i++){
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      const pageText = content.items.map(it => it.str).join(' ');
+      fullText += pageText + '\n';
+    }
+    return { text: fullText, numPages: numPages };
+  }
+
+  const SECTION_KEYWORDS = {
+    experience: ['expérience','experience','professionnelle','emploi','poste','work history','employment'],
+    education: ['formation','education','diplôme','diploma','études','academic'],
+    skills: ['compétence','compétences','skills','competences','technique','technical skills'],
+    contact: ['email','téléphone','phone','tel','linkedin'],
+    languages: ['langue','langues','language','languages'],
+    summary: ['profil','résumé','summary','objectif','objective','à propos']
+  };
+
+  const ACTION_VERBS = ['géré','gérer','développé','développer','conçu','concevoir','dirigé','diriger','amélioré','améliorer',
+    'créé','créer','piloté','piloter','optimisé','optimiser','coordonné','coordonner','analysé','analyser',
+    'mis en place','déployé','déployer','automatisé','automatiser','managed','developed','designed','led','improved',
+    'created','built','optimized','coordinated','analyzed','implemented','deployed','automated'];
+
+  const STOPWORDS = new Set(['le','la','les','de','des','du','un','une','et','en','à','au','aux','pour','avec','sur','dans',
+    'ce','ces','sa','son','ses','par','plus','ou','est','sont','the','a','an','and','of','in','to','for','with','on','at',
+    'is','are','be','as','that','this','from','by']);
+
+  function extractKeywords(text){
+    return (text.toLowerCase().match(/[a-zàâäéèêëïîôöùûüç]{3,}/g) || [])
+      .filter(w => !STOPWORDS.has(w));
+  }
+
+  function runAtsAnalysis(pdfResult, fileSizeKB, jobDescription){
+    const text = pdfResult.text;
+    const lowerText = text.toLowerCase();
+    const wordCount = (text.match(/\S+/g) || []).length;
+    const tips = [];
+    const cats = {};
+
+    // 1. Contact info
+    const hasEmail = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/i.test(text);
+    const hasPhone = /(\+?\d[\d\s.-]{7,}\d)/.test(text);
+    const hasLinkedIn = /linkedin\.com/i.test(text);
+    let contactScore = (hasEmail?40:0) + (hasPhone?35:0) + (hasLinkedIn?25:0);
+    cats.contact = contactScore;
+    tips.push({type: hasEmail?'good':'bad', text: hasEmail ? 'Adresse email détectée et lisible par l\'ATS' : 'Aucune adresse email détectée — l\'ATS ne pourra pas vous contacter'});
+    tips.push({type: hasPhone?'good':'warn', text: hasPhone ? 'Numéro de téléphone détecté' : 'Aucun numéro de téléphone clairement détecté'});
+    tips.push({type: hasLinkedIn?'good':'warn', text: hasLinkedIn ? 'Lien LinkedIn présent' : 'Pensez à ajouter votre lien LinkedIn'});
+
+    // 2. Sections structure
+    let sectionsFound = 0;
+    let sectionDetails = [];
+    for (const [key, keywords] of Object.entries(SECTION_KEYWORDS)){
+      const found = keywords.some(k => lowerText.includes(k));
+      if (found) sectionsFound++;
+      sectionDetails.push({key, found});
+    }
+    const structureScore = Math.round((sectionsFound / Object.keys(SECTION_KEYWORDS).length) * 100);
+    cats.structure = structureScore;
+    const missingSections = sectionDetails.filter(s => !s.found).map(s => s.key);
+    if (missingSections.length === 0){
+      tips.push({type:'good', text: 'Toutes les sections essentielles sont présentes (expérience, formation, compétences...)'});
+    } else {
+      tips.push({type:'warn', text: `Sections potentiellement manquantes ou mal identifiées : ${missingSections.join(', ')}`});
+    }
+
+    // 3. Length check
+    let lengthScore;
+    if (wordCount < 150){ lengthScore = 30; tips.push({type:'bad', text:`CV très court (${wordCount} mots) — risque d'être jugé incomplet par l'ATS`}); }
+    else if (wordCount < 300){ lengthScore = 65; tips.push({type:'warn', text:`CV assez court (${wordCount} mots) — envisagez d'étoffer vos expériences`}); }
+    else if (wordCount <= 900){ lengthScore = 100; tips.push({type:'good', text:`Longueur idéale (${wordCount} mots, ~1-2 pages)`}); }
+    else { lengthScore = 60; tips.push({type:'warn', text:`CV assez long (${wordCount} mots) — les ATS et recruteurs préfèrent la concision`}); }
+    cats.length = lengthScore;
+
+    // 4. Action verbs
+    const verbHits = ACTION_VERBS.filter(v => lowerText.includes(v)).length;
+    const verbScore = Math.min(100, verbHits * 15);
+    cats.actionVerbs = verbScore;
+    if (verbHits >= 5) tips.push({type:'good', text: `${verbHits} verbes d'action forts détectés (géré, développé, optimisé...)`});
+    else if (verbHits >= 2) tips.push({type:'warn', text: 'Peu de verbes d\'action forts — renforcez vos descriptions avec des verbes comme "développé", "piloté", "optimisé"'});
+    else tips.push({type:'bad', text: 'Aucun verbe d\'action fort détecté — commencez vos puces par des verbes d\'action'});
+
+    // 5. Quantified achievements (numbers/percentages)
+    const numberMatches = (text.match(/\d+[%€$]|\d+\s?(%|ans|heures|jours|clients|projets)/gi) || []).length;
+    const quantScore = Math.min(100, numberMatches * 20);
+    cats.quantified = quantScore;
+    if (numberMatches >= 3) tips.push({type:'good', text: `${numberMatches} résultats chiffrés détectés — excellent pour prouver votre impact`});
+    else tips.push({type:'warn', text: 'Peu de résultats chiffrés (%, montants, durées) — quantifiez vos réalisations pour plus d\'impact'});
+
+    // 6. File format / scanned PDF detection
+    const charsPerKB = text.length / Math.max(fileSizeKB, 1);
+    let formatScore = 100;
+    if (charsPerKB < 3){
+      formatScore = 20;
+      tips.push({type:'bad', text: 'Très peu de texte extrait par rapport à la taille du fichier — votre PDF est peut-être un scan/image, illisible par les ATS'});
+    } else {
+      tips.push({type:'good', text: 'Le PDF contient du texte réel extractible (compatible ATS)'});
+    }
+    cats.format = formatScore;
+
+    // 7. Bullet points usage
+    const bulletCount = (text.match(/[•●▪️‣·]/g) || []).length;
+    if (bulletCount >= 4) tips.push({type:'good', text: `${bulletCount} puces détectées — bonne structuration visuelle`});
+    else tips.push({type:'warn', text: 'Peu de puces détectées — structurez vos expériences avec des listes à puces'});
+
+    // 8. Keyword match vs job description (optional)
+    let keywordScore = null;
+    if (jobDescription && jobDescription.length > 20){
+      const jdWords = new Set(extractKeywords(jobDescription));
+      const cvWords = new Set(extractKeywords(text));
+      let matched = 0;
+      jdWords.forEach(w => { if (cvWords.has(w)) matched++; });
+      keywordScore = jdWords.size > 0 ? Math.round((matched / jdWords.size) * 100) : 0;
+      cats.keywords = keywordScore;
+      if (keywordScore >= 60) tips.push({type:'good', text: `${keywordScore}% des mots-clés de l'offre retrouvés dans le CV — bonne correspondance`});
+      else if (keywordScore >= 30) tips.push({type:'warn', text: `${keywordScore}% de correspondance avec l'offre — ajoutez davantage de mots-clés spécifiques du poste`});
+      else tips.push({type:'bad', text: `Seulement ${keywordScore}% de correspondance avec l'offre — adaptez le vocabulaire de votre CV à celui de l'annonce`});
+    }
+
+    // Overall score
+    const weights = jobDescription && jobDescription.length > 20
+      ? {contact:.15, structure:.15, length:.10, actionVerbs:.15, quantified:.15, format:.15, keywords:.15}
+      : {contact:.18, structure:.18, length:.12, actionVerbs:.18, quantified:.17, format:.17};
+    let overall = 0, wsum = 0;
+    for (const [k,w] of Object.entries(weights)){
+      if (cats[k] !== undefined){ overall += cats[k]*w; wsum += w; }
+    }
+    overall = Math.round(overall / wsum);
+
+    return { overall, cats, tips, wordCount, numPages: pdfResult.numPages, hasJD: !!(jobDescription && jobDescription.length>20) };
+  }
+
+  function scoreColor(score){
+    if (score >= 75) return '#4ade80';
+    if (score >= 50) return '#fbbf24';
+    return '#f87171';
+  }
+  function scoreVerdict(score){
+    if (score >= 85) return ['Excellent 🎉', 'Votre CV est très bien optimisé pour les systèmes ATS. Quelques ajustements mineurs peuvent encore l\'améliorer.'];
+    if (score >= 70) return ['Bon niveau ✅', 'Votre CV passe globalement bien les filtres ATS. Suivez les recommandations ci-dessous pour l\'optimiser davantage.'];
+    if (score >= 50) return ['Moyen ⚠️', 'Votre CV risque d\'être filtré par certains ATS. Plusieurs points méritent votre attention.'];
+    return ['À améliorer 🔴', 'Votre CV présente des risques importants de rejet automatique. Suivez les recommandations ci-dessous en priorité.'];
+  }
+  const CAT_LABELS = {
+    contact: '📞 Informations de contact',
+    structure: '🗂️ Structure & Sections',
+    length: '📏 Longueur du document',
+    actionVerbs: '⚡ Verbes d\'action',
+    quantified: '📊 Résultats chiffrés',
+    format: '📄 Format & lisibilité',
+    keywords: '🎯 Correspondance offre'
+  };
+
+  function renderResults(analysis, fileName){
+    const color = scoreColor(analysis.overall);
+    const [verdictTitle, verdictText] = scoreVerdict(analysis.overall);
+    const circumference = 2 * Math.PI * 60;
+    const offset = circumference * (1 - analysis.overall/100);
+
+    let catsHtml = '';
+    for (const [key, val] of Object.entries(analysis.cats)){
+      const c = scoreColor(val);
+      catsHtml += `<div class="ats-cat">
+        <div class="ats-cat-head"><span>${CAT_LABELS[key] || key}</span><span style="color:${c}">${val}%</span></div>
+        <div class="ats-cat-bar"><div class="ats-cat-bar-fill" style="width:0%;background:${c}" data-w="${val}%"></div></div>
+      </div>`;
+    }
+
+    const tipIcon = {good:'✅', warn:'⚠️', bad:'❌'};
+    let tipsHtml = analysis.tips.map(t => `<div class="ats-tip ${t.type}"><span class="tip-icon">${tipIcon[t.type]}</span><span>${t.text}</span></div>`).join('');
+
+    resultsEl.innerHTML = `
+      <div class="ats-results">
+        <div class="ats-score-row">
+          <div class="ats-score-circle">
+            <svg viewBox="0 0 140 140">
+              <circle class="track" cx="70" cy="70" r="60"></circle>
+              <circle class="fill" cx="70" cy="70" r="60" stroke="${color}" stroke-dasharray="${circumference}" stroke-dashoffset="${circumference}" data-offset="${offset}"></circle>
+            </svg>
+            <div class="score-label"><span class="score-num">${analysis.overall}</span><span class="score-den">/ 100</span></div>
+          </div>
+          <div class="ats-score-verdict">
+            <h3 style="color:${color}">${verdictTitle}</h3>
+            <p>${verdictText}</p>
+            <p style="margin-top:.6rem;font-size:.75rem;color:var(--text3);font-family:var(--font-mono)">📄 ${fileName} · ${analysis.numPages} page(s) · ${analysis.wordCount} mots${analysis.hasJD ? ' · comparé à une offre' : ''}</p>
+          </div>
+        </div>
+        <div class="ats-cats">${catsHtml}</div>
+        <div class="ats-tips">
+          <h4>💡 Recommandations détaillées</h4>
+          ${tipsHtml}
+        </div>
+        <button class="ats-reset-btn" onclick="document.getElementById('atsResults').innerHTML='';document.getElementById('cvFileInput').value='';">🔄 Analyser un autre CV</button>
+      </div>
+    `;
+
+    requestAnimationFrame(() => {
+      const fillCircle = resultsEl.querySelector('.ats-score-circle .fill');
+      if (fillCircle) fillCircle.style.strokeDashoffset = fillCircle.dataset.offset;
+      resultsEl.querySelectorAll('.ats-cat-bar-fill').forEach(el => { el.style.width = el.dataset.w; });
+    });
+
+    resultsEl.scrollIntoView({behavior:'smooth', block:'nearest'});
   }
 })();
 </script>
