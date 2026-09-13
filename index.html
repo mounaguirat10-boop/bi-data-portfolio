@@ -250,6 +250,29 @@ section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
 .ats-reset-btn { display: block; margin: 1.5rem auto 0; padding: .7rem 1.8rem; border-radius: 50px; background: transparent; border: 1px solid var(--purple); color: var(--purple-light); font-size: .85rem; font-weight: 600; cursor: pointer; transition: all .3s; }
 .ats-reset-btn:hover { background: rgba(124,92,252,.1); }
 .privacy-note { text-align: center; font-size: .75rem; color: var(--text3); margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: .4rem; }
+.saved-cv-banner { display: flex; align-items: center; gap: 1rem; background: rgba(124,92,252,.08); border: 1px solid rgba(124,92,252,.25); border-radius: var(--radius); padding: 1rem 1.4rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+.saved-cv-banner .scb-icon { font-size: 1.6rem; flex-shrink: 0; }
+.saved-cv-banner .scb-info { flex: 1; min-width: 180px; }
+.saved-cv-banner .scb-title { font-size: .88rem; font-weight: 600; color: var(--text); }
+.saved-cv-banner .scb-meta { font-size: .75rem; color: var(--text3); font-family: var(--font-mono); margin-top: .2rem; }
+.saved-cv-banner .scb-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+.scb-btn { padding: .5rem 1rem; border-radius: 50px; font-size: .78rem; font-weight: 600; cursor: pointer; border: 1px solid; transition: all .2s; white-space: nowrap; }
+.scb-btn.view { background: rgba(124,92,252,.15); border-color: var(--purple); color: var(--purple-light); }
+.scb-btn.view:hover { background: rgba(124,92,252,.25); }
+.scb-btn.delete { background: transparent; border-color: rgba(248,113,113,.4); color: var(--red); }
+.scb-btn.delete:hover { background: rgba(248,113,113,.12); }
+.job-search-widget { background: var(--bg3); border: 1px solid rgba(124,92,252,.12); border-radius: var(--radius); padding: 1.5rem; margin-top: 1.5rem; text-align: center; }
+.job-search-widget h4 { font-family: var(--font-display); font-size: 1.05rem; color: var(--text); margin-bottom: 1rem; font-weight: 700; }
+.job-search-links { display: flex; flex-wrap: wrap; gap: .7rem; justify-content: center; }
+.job-search-btn { padding: .6rem 1.2rem; border-radius: 50px; font-size: .82rem; font-weight: 600; border: 1px solid; transition: all .25s ease; display: inline-flex; align-items: center; gap: .4rem; }
+.job-search-btn.linkedin { background: rgba(96,165,250,.1); border-color: rgba(96,165,250,.35); color: var(--blue); }
+.job-search-btn.linkedin:hover { background: rgba(96,165,250,.2); transform: translateY(-2px); }
+.job-search-btn.indeed { background: rgba(124,92,252,.1); border-color: rgba(124,92,252,.35); color: var(--purple-light); }
+.job-search-btn.indeed:hover { background: rgba(124,92,252,.2); transform: translateY(-2px); }
+.job-search-btn.tanitjobs { background: rgba(240,201,108,.1); border-color: rgba(240,201,108,.35); color: var(--gold); }
+.job-search-btn.tanitjobs:hover { background: rgba(240,201,108,.2); transform: translateY(-2px); }
+.job-search-btn.google { background: rgba(74,222,128,.1); border-color: rgba(74,222,128,.35); color: var(--green); }
+.job-search-btn.google:hover { background: rgba(74,222,128,.2); transform: translateY(-2px); }
 
 /* CONTACT */
 .contact-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 1.2rem; }
@@ -941,6 +964,8 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
   <p class="section-sub">Testez la compatibilité de votre CV avec les systèmes de recrutement automatisés (ATS)</p>
   <div class="analyzer-wrap reveal">
 
+    <div id="savedCvBanner"></div>
+
     <div class="upload-zone" id="uploadZone" onclick="document.getElementById('cvFileInput').click()">
       <div class="uz-icon">📄</div>
       <div class="uz-title">Glissez votre CV ici ou cliquez pour parcourir</div>
@@ -955,6 +980,16 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
 
     <div id="analyzerStatus"></div>
     <div id="atsResults"></div>
+
+    <div class="job-search-widget">
+      <h4>🔍 Cherchez des offres pendant que vous optimisez votre CV</h4>
+      <div class="job-search-links">
+        <a href="https://www.linkedin.com/jobs/search/?keywords=Data%20Analyst%20Power%20BI&location=Tunisia" target="_blank" class="job-search-btn linkedin">💼 LinkedIn Jobs</a>
+        <a href="https://tn.indeed.com/jobs?q=Data+Analyst+Power+BI&l=Tunis" target="_blank" class="job-search-btn indeed">🔎 Indeed Tunisie</a>
+        <a href="https://www.tanitjobs.com/categories/705/informatique-jobs/" target="_blank" class="job-search-btn tanitjobs">🇹🇳 Tanitjobs</a>
+        <a href="https://www.google.com/search?q=Data+Analyst+Power+BI+jobs+Tunisia" target="_blank" class="job-search-btn google">🌐 Google Jobs</a>
+      </div>
+    </div>
 
     <p class="privacy-note">🔒 100% privé — votre CV n'est jamais envoyé nulle part, tout le traitement se fait dans votre navigateur</p>
   </div>
@@ -2508,6 +2543,69 @@ setTimeout(()=>togglePlay(),1300);
   const statusEl = document.getElementById('analyzerStatus');
   const resultsEl = document.getElementById('atsResults');
   const jdInput = document.getElementById('jdInput');
+  const savedBanner = document.getElementById('savedCvBanner');
+
+  const STORAGE_KEY = 'mg_cv_ats_analysis_v1';
+
+  function saveAnalysis(fileName, analysis){
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        fileName: fileName,
+        analysis: analysis,
+        savedAt: new Date().toISOString()
+      }));
+    } catch(e){ /* localStorage indisponible (mode privé...) — on ignore silencieusement */ }
+  }
+  function loadSavedAnalysis(){
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch(e){ return null; }
+  }
+  function clearSavedAnalysis(){
+    try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
+    savedBanner.innerHTML = '';
+  }
+  function formatSavedDate(iso){
+    const d = new Date(iso);
+    const now = new Date();
+    const diffMs = now - d;
+    const diffMin = Math.floor(diffMs / 60000);
+    if (diffMin < 1) return 'à l\'instant';
+    if (diffMin < 60) return `il y a ${diffMin} min`;
+    const diffH = Math.floor(diffMin / 60);
+    if (diffH < 24) return `il y a ${diffH}h`;
+    const diffD = Math.floor(diffH / 24);
+    if (diffD === 1) return 'hier';
+    if (diffD < 7) return `il y a ${diffD} jours`;
+    return d.toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'});
+  }
+  function renderSavedBanner(){
+    const saved = loadSavedAnalysis();
+    if (!saved){ savedBanner.innerHTML = ''; return; }
+    const color = scoreColor(saved.analysis.overall);
+    savedBanner.innerHTML = `
+      <div class="saved-cv-banner">
+        <div class="scb-icon">💾</div>
+        <div class="scb-info">
+          <div class="scb-title">CV enregistré : <strong>${saved.fileName}</strong></div>
+          <div class="scb-meta">Score : <span style="color:${color}">${saved.analysis.overall}/100</span> · analysé ${formatSavedDate(saved.savedAt)} · stocké uniquement sur cet appareil</div>
+        </div>
+        <div class="scb-actions">
+          <button class="scb-btn view" id="scbViewBtn">👁️ Revoir les résultats</button>
+          <button class="scb-btn delete" id="scbDeleteBtn">🗑️ Supprimer</button>
+        </div>
+      </div>
+    `;
+    document.getElementById('scbViewBtn').addEventListener('click', () => {
+      renderResults(saved.analysis, saved.fileName);
+    });
+    document.getElementById('scbDeleteBtn').addEventListener('click', () => {
+      clearSavedAnalysis();
+      resultsEl.innerHTML = '';
+    });
+  }
+  renderSavedBanner();
 
   // Drag & drop
   ['dragenter','dragover'].forEach(evt => uploadZone.addEventListener(evt, e => { e.preventDefault(); uploadZone.classList.add('dragover'); }));
@@ -2535,6 +2633,8 @@ setTimeout(()=>togglePlay(),1300);
       const fileSizeKB = file.size / 1024;
       const analysis = runAtsAnalysis(text, fileSizeKB, jdInput.value.trim());
       statusEl.innerHTML = '';
+      saveAnalysis(file.name, analysis);
+      renderSavedBanner();
       renderResults(analysis, file.name);
     } catch(err){
       console.error(err);
