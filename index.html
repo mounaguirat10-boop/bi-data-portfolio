@@ -985,7 +985,7 @@ footer { text-align: center; padding: 2rem; color: var(--text3); font-size: .8re
       <h4>🔍 Cherchez des offres pendant que vous optimisez votre CV</h4>
       <div class="job-search-links">
         <a href="https://www.linkedin.com/jobs/search/?keywords=Data%20Analyst%20Power%20BI&location=Tunisia" target="_blank" class="job-search-btn linkedin">💼 LinkedIn Jobs</a>
-        <a href="https://tn.indeed.com/jobs?q=Data+Analyst+Power+BI&l=Tunis" target="_blank" class="job-search-btn indeed">🔎 Indeed Tunisie</a>
+        <a href="https://fr.indeed.com/jobs?q=Data+Analyst+Power+BI&l=Tunisie" target="_blank" class="job-search-btn indeed">🔎 Indeed Tunisie</a>
         <a href="https://www.tanitjobs.com/categories/705/informatique-jobs/" target="_blank" class="job-search-btn tanitjobs">🇹🇳 Tanitjobs</a>
         <a href="https://www.google.com/search?q=Data+Analyst+Power+BI+jobs+Tunisia" target="_blank" class="job-search-btn google">🌐 Google Jobs</a>
       </div>
@@ -2534,8 +2534,30 @@ setTimeout(()=>togglePlay(),1300);
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
 (function(){
-  if (window['pdfjsLib']) {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  const PDF_WORKER_URL = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  let workerReadyPromise = null;
+
+  // Loading the worker directly by URL fails when the page is opened via file://
+  // (or any context where the document has a null/opaque origin) because browsers
+  // block instantiating a Worker whose script lives on a different origin from a
+  // file:// page. Fetching the worker code and running it from a same-origin Blob
+  // URL sidesteps this restriction and works everywhere: file://, http://, https://.
+  function ensurePdfWorkerReady(){
+    if (workerReadyPromise) return workerReadyPromise;
+    workerReadyPromise = (async () => {
+      if (!window['pdfjsLib']) throw new Error('pdfjsLib introuvable (bibliothèque non chargée)');
+      try {
+        const resp = await fetch(PDF_WORKER_URL);
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const code = await resp.text();
+        const blob = new Blob([code], { type: 'application/javascript' });
+        pdfjsLib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(blob);
+      } catch (e){
+        // Fallback: direct CDN URL (works fine on real http/https hosting even if the Blob trick fails for some reason)
+        pdfjsLib.GlobalWorkerOptions.workerSrc = PDF_WORKER_URL;
+      }
+    })();
+    return workerReadyPromise;
   }
 
   const uploadZone = document.getElementById('uploadZone');
@@ -2625,9 +2647,11 @@ setTimeout(()=>togglePlay(),1300);
       statusEl.innerHTML = '<div class="analyzer-status" style="color:var(--red)">⚠️ Veuillez déposer un fichier PDF.</div>';
       return;
     }
-    statusEl.innerHTML = '<div class="analyzer-status"><div class="spinner"></div>Extraction et analyse du CV en cours...</div>';
+    statusEl.innerHTML = '<div class="analyzer-status"><div class="spinner"></div>Chargement du moteur PDF...</div>';
 
     try {
+      await ensurePdfWorkerReady();
+      statusEl.innerHTML = '<div class="analyzer-status"><div class="spinner"></div>Extraction et analyse du CV en cours...</div>';
       const arrayBuffer = await file.arrayBuffer();
       const text = await extractPdfText(arrayBuffer);
       const fileSizeKB = file.size / 1024;
@@ -2638,7 +2662,7 @@ setTimeout(()=>togglePlay(),1300);
       renderResults(analysis, file.name);
     } catch(err){
       console.error(err);
-      statusEl.innerHTML = '<div class="analyzer-status" style="color:var(--red)">❌ Erreur lors de la lecture du PDF. Réessayez avec un autre fichier.</div>';
+      statusEl.innerHTML = '<div class="analyzer-status" style="color:var(--red)">❌ Erreur lors de la lecture du PDF (' + (err && err.message ? err.message : 'inconnue') + '). Si vous testez le fichier en local, essayez de le déposer sur GitHub Pages, ou réessayez avec un autre navigateur (Chrome recommandé).</div>';
     }
   }
 
